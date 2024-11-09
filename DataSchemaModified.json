@@ -30,7 +30,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "date"  
+                  "format": "x"  
                 }
               },
               "required": ["content", "date"]
