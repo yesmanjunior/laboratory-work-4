@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "TouristConsumer": {
-      "type": "objeect",
+      "type": "object",
       "description": "Tourist consumer information and actions",
       "properties": {
         "name": {
@@ -30,7 +30,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "data"
+                  "format": "wrongdateformat"  // Некоректний формат дати
                 }
               },
               "required": ["content", "date"]
@@ -45,7 +45,7 @@
               "type": "object",
               "properties": {
                 "value": {
-                  "type": "integer",
+                  "type": "string",  // Змінили тип на string замість integer
                   "description": "Rating value",
                   "minimum": 1,
                   "maximum": 5
@@ -64,7 +64,7 @@
                     "averageRating": {
                       "type": "number",
                       "description": "Average rating of the drink",
-                      "minimum": 0,
+                      "minimum": 6,  // Некоректний мінімум
                       "maximum": 5
                     }
                   },
@@ -104,7 +104,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "date"
+                  "format": "wrongdateformat"  // Некоректний формат дати
                 }
               },
               "required": ["content", "date"]
@@ -118,10 +118,10 @@
             "totalReviews": {
               "type": "integer",
               "description": "Total number of reviews",
-              "minimum": 0
+              "minimum": -1  // Некоректний мінімум
             },
             "averageRating": {
-              "type": "number",
+              "type": "string",  // Некоректний тип даних
               "description": "Average rating managed by the manager",
               "minimum": 0,
               "maximum": 5
@@ -140,7 +140,7 @@
           "type": "object",
           "properties": {
             "averageRating": {
-              "type": "number",
+              "type": "string",  // Некоректний тип
               "description": "Average rating of the drink",
               "minimum": 0,
               "maximum": 5
@@ -151,7 +151,5 @@
       }
     }
   },
-  "required": ["TouristConsumer", "Manager", "Drinks"],
-  "additionalProperties": "true",  
-  "undefinedProperty": "value"  
+  "required": ["TouristConsumer", "Manager", "Drinks"]
 }
