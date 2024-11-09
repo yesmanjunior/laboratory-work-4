@@ -11,7 +11,7 @@
         "name": {
           "type": "string",
           "description": "Name of the tourist",
-          "minLength": 1,
+          "minLength": -,
           "maxLength": 100,
           "pattern": "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$"
         },
