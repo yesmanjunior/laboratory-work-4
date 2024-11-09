@@ -9,22 +9,16 @@
       "description": "Tourist consumer information and actions",
       "properties": {
         "name": {
-          "type": "string",
+          "type": "integer", 
           "description": "Name of the tourist",
           "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^[0-9]+$" 
+          "maxLength": 100
         },
         "reviews": {
-          "type": "object",
+          "type": "array", 
           "description": "Reviews left by the tourist",
-          "patternProperties": {
-            "^review[0-9]+$": {
-              "type": "array",  
-              "items": {
-                "type": "string"
-              }
-            }
+          "items": {
+            "type": "string"
           }
         },
         "ratings": {
@@ -41,7 +35,7 @@
                   "maximum": 5
                 },
                 "drink": {
-                  "type": "array",  
+                  "type": "boolean", 
                   "description": "Drink associated with the rating"
                 }
               },
@@ -50,7 +44,7 @@
           }
         }
       },
-      "required": ["name", "reviews"]  
+      "required": ["name", "reviews", "ratings"]  
     },
     "Manager": {
       "type": "object",
@@ -60,17 +54,13 @@
           "type": "string",
           "description": "Name of the manager",
           "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$"
+          "maxLength": 100
         },
         "viewedReviews": {
-          "type": "object",
+          "type": "array",  
           "description": "Reviews viewed by the manager",
-          "patternProperties": {
-            "^review[0-9]+$": {
-              "type": "string",  
-              "description": "Content of the viewed review"
-            }
+          "items": {
+            "type": "string"
           }
         },
         "statistics": {
@@ -78,18 +68,18 @@
           "description": "Statistics managed by the manager",
           "properties": {
             "totalReviews": {
-              "type": "string", 
+              "type": "string",  
               "description": "Total number of reviews"
             },
             "averageRating": {
-              "type": "string", 
+              "type": "string",  
               "description": "Average rating managed by the manager"
             }
           },
           "required": ["totalReviews", "averageRating"]
         }
       },
-      "required": ["name", "viewedReviews"]  
+      "required": ["name", "viewedReviews", "statistics"]
     },
     "Drinks": {
       "type": "object",
