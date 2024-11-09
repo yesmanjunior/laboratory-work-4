@@ -30,7 +30,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "x"  
+                  "format": "incorrectdateformat"  
                 }
               },
               "required": ["content", "date"]
@@ -45,7 +45,7 @@
               "type": "object",
               "properties": {
                 "value": {
-                  "type": "string", 
+                  "type": "string",  
                   "description": "Rating value",
                   "minimum": 1,
                   "maximum": 5
@@ -64,7 +64,7 @@
                     "averageRating": {
                       "type": "number",
                       "description": "Average rating of the drink",
-                      "minimum": 6, 
+                      "minimum": 6,  
                       "maximum": 5
                     }
                   },
@@ -121,7 +121,7 @@
               "minimum": -1  
             },
             "averageRating": {
-              "type": "string", 
+              "type": "string",  
               "description": "Average rating managed by the manager",
               "minimum": 0,
               "maximum": 5
@@ -140,7 +140,7 @@
           "type": "object",
           "properties": {
             "averageRating": {
-              "type": "string", 
+              "type": "string",  
               "description": "Average rating of the drink",
               "minimum": 0,
               "maximum": 5
