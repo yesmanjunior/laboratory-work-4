@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2024-10/schema",
   "title": "Tourist Management Schema",
-  "description": "Modified schema for tourist consumers, managers, drinks, and reviews data",
+  "description": "Schema for tourist consumers, managers, drinks, and reviews data",
   "type": "object",
   "properties": {
     "TouristConsumer": {
@@ -9,19 +9,74 @@
       "description": "Tourist consumer information and actions",
       "properties": {
         "name": {
-          "type": "integer",  
-          "description": "Name of the tourist"
+          "type": "string",
+          "description": "Name of the tourist",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$" 
         },
         "reviews": {
-          "type": "array", 
-          "description": "Reviews left by the tourist"
+          "type": "object",
+          "description": "Reviews left by the tourist",
+          "patternProperties": {
+            "^review[0-9]+$": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Content of the review",
+                  "minLength": 1
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Date of the review",
+                  "format": "date-time"  
+                }
+              },
+              "required": ["content", "date"]
+            }
+          }
         },
         "ratings": {
           "type": "object",
-          "description": "Ratings given by the tourist"
+          "description": "Ratings given by the tourist",
+          "patternProperties": {
+            "^rating[0-9]+$": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "description": "Rating value",
+                  "minimum": 0, 
+                  "maximum": 10
+                },
+                "drink": {
+                  "type": "object",
+                  "description": "Drink associated with the rating",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the drink",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$" 
+                    },
+                    "averageRating": {
+                      "type": "number",
+                      "description": "Average rating of the drink",
+                      "minimum": -1, 
+                      "maximum": 5
+                    }
+                  },
+                  "required": ["name", "averageRating"]
+                }
+              },
+              "required": ["value", "drink"]
+            }
+          }
         }
       },
-      "required": ["name"]  
+      "required": ["name", "reviews", "ratings"]
     },
     "Manager": {
       "type": "object",
@@ -29,22 +84,72 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "Name of the manager"
+          "description": "Name of the manager",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$"  
         },
         "viewedReviews": {
           "type": "object",
-          "description": "Reviews viewed by the manager"
+          "description": "Reviews viewed by the manager",
+          "patternProperties": {
+            "^review[0-9]+$": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Content of the viewed review",
+                  "minLength": 1
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Date of the review",
+                  "format": "date-time"  
+                }
+              },
+              "required": ["content", "date"]
+            }
+          }
         },
         "statistics": {
-          "type": "string",  
-          "description": "Statistics managed by the manager"
+          "type": "object",
+          "description": "Statistics managed by the manager",
+          "properties": {
+            "totalReviews": {
+              "type": "integer",
+              "description": "Total number of reviews",
+              "minimum": -1  
+            },
+            "averageRating": {
+              "type": "number",
+              "description": "Average rating managed by the manager",
+              "minimum": -1, 
+              "maximum": 10  
+            }
+          },
+          "required": ["totalReviews", "averageRating"]
         }
       },
-      "required": ["name", "viewedReviews"]  
+      "required": ["name", "viewedReviews", "statistics"]
     },
     "Drinks": {
-      "type": "array",  
-      "description": "Collection of drinks with ratings"
+      "type": "object",
+      "description": "Collection of drinks with ratings",
+      "patternProperties": {
+        "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$": {  
+          "type": "object",
+          "properties": {
+            "averageRating": {
+              "type": "number",
+              "description": "Average rating of the drink",
+              "minimum": -1, 
+              "maximum": 10  
+            }
+          },
+          "required": ["averageRating"]
+        }
+      }
     }
-  }
+  },
+  "required": ["TouristConsumer", "Manager", "Drinks"]
 }
