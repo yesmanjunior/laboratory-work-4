@@ -1,9 +1,8 @@
 name: JSON Linter
 on:
-
  push:
-
   branches: [main]
+  
 jobs:
  json_linter_test:
 
