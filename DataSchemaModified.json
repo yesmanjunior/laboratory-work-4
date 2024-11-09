@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2024-10/schema",
+  "title": "Tourist Management Schema",
+  "description": "Modified schema for tourist consumers, managers, drinks, and reviews data",
+  "type": "object",
+  "properties": {
+    "TouristConsumer": {
+      "type": "object",
+      "description": "Tourist consumer information and actions",
+      "properties": {
+        "name": {
+          "type": "integer",  
+          "description": "Name of the tourist"
+        },
+        "reviews": {
+          "type": "array", 
+          "description": "Reviews left by the tourist"
+        },
+        "ratings": {
+          "type": "object",
+          "description": "Ratings given by the tourist"
+        }
+      },
+      "required": ["name"]  
+    },
+    "Manager": {
+      "type": "object",
+      "description": "Manager information and actions",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the manager"
+        },
+        "viewedReviews": {
+          "type": "object",
+          "description": "Reviews viewed by the manager"
+        },
+        "statistics": {
+          "type": "string",  
+          "description": "Statistics managed by the manager"
+        }
+      },
+      "required": ["name", "viewedReviews"]  
+    },
+    "Drinks": {
+      "type": "array",  
+      "description": "Collection of drinks with ratings"
+    }
+  }
+}
