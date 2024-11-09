@@ -30,7 +30,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "wrongdateformat"  // Некоректний формат дати
+                  "format": "date"  
                 }
               },
               "required": ["content", "date"]
@@ -45,7 +45,7 @@
               "type": "object",
               "properties": {
                 "value": {
-                  "type": "string",  // Змінили тип на string замість integer
+                  "type": "string", 
                   "description": "Rating value",
                   "minimum": 1,
                   "maximum": 5
@@ -64,7 +64,7 @@
                     "averageRating": {
                       "type": "number",
                       "description": "Average rating of the drink",
-                      "minimum": 6,  // Некоректний мінімум
+                      "minimum": 6, 
                       "maximum": 5
                     }
                   },
@@ -104,7 +104,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "wrongdateformat"  // Некоректний формат дати
+                  "format": "wrongdateformat"  
                 }
               },
               "required": ["content", "date"]
@@ -118,10 +118,10 @@
             "totalReviews": {
               "type": "integer",
               "description": "Total number of reviews",
-              "minimum": -1  // Некоректний мінімум
+              "minimum": -1  
             },
             "averageRating": {
-              "type": "string",  // Некоректний тип даних
+              "type": "string", 
               "description": "Average rating managed by the manager",
               "minimum": 0,
               "maximum": 5
@@ -140,7 +140,7 @@
           "type": "object",
           "properties": {
             "averageRating": {
-              "type": "string",  // Некоректний тип
+              "type": "string", 
               "description": "Average rating of the drink",
               "minimum": 0,
               "maximum": 5
