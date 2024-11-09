@@ -9,11 +9,11 @@
       "description": "Tourist consumer information and actions",
       "properties": {
         "name": {
-          "type": "string",
+          "type": "integer",
           "description": "Name of the tourist",
           "minLength": 1,
           "maxLength": 100,
-          "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$" 
+          "pattern": "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$"
         },
         "reviews": {
           "type": "object",
@@ -23,14 +23,14 @@
               "type": "object",
               "properties": {
                 "content": {
-                  "type": "string",
+                  "type": "integer",
                   "description": "Content of the review",
                   "minLength": 1
                 },
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "date-time"  
+                  "format": "date"
                 }
               },
               "required": ["content", "date"]
@@ -47,8 +47,8 @@
                 "value": {
                   "type": "integer",
                   "description": "Rating value",
-                  "minimum": 0, 
-                  "maximum": 10
+                  "minimum": 1,
+                  "maximum": 5
                 },
                 "drink": {
                   "type": "object",
@@ -59,12 +59,12 @@
                       "description": "Name of the drink",
                       "minLength": 1,
                       "maxLength": 100,
-                      "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$" 
+                      "pattern": "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$"
                     },
                     "averageRating": {
-                      "type": "number",
+                      "type": "integer",
                       "description": "Average rating of the drink",
-                      "minimum": -1, 
+                      "minimum": 0,
                       "maximum": 5
                     }
                   },
@@ -87,7 +87,7 @@
           "description": "Name of the manager",
           "minLength": 1,
           "maxLength": 100,
-          "pattern": "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$"  
+          "pattern": "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$"
         },
         "viewedReviews": {
           "type": "object",
@@ -97,14 +97,14 @@
               "type": "object",
               "properties": {
                 "content": {
-                  "type": "string",
+                  "type": "integer",
                   "description": "Content of the viewed review",
                   "minLength": 1
                 },
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "date-time"  
+                  "format": "date"
                 }
               },
               "required": ["content", "date"]
@@ -118,13 +118,13 @@
             "totalReviews": {
               "type": "integer",
               "description": "Total number of reviews",
-              "minimum": -1  
+              "minimum": 0
             },
             "averageRating": {
-              "type": "number",
+              "type": "string",
               "description": "Average rating managed by the manager",
-              "minimum": -1, 
-              "maximum": 10  
+              "minimum": 0,
+              "maximum": 5
             }
           },
           "required": ["totalReviews", "averageRating"]
@@ -136,14 +136,14 @@
       "type": "object",
       "description": "Collection of drinks with ratings",
       "patternProperties": {
-        "^[A-Za-z0-9]+(?:[\\s][A-Za-z0-9]+)*$": {  
+        "^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+(?:[\\s][A-Za-zА-Яа-яЁёЇїІіЄєҐґ]+)*$": {
           "type": "object",
           "properties": {
             "averageRating": {
-              "type": "number",
+              "type": "integer",
               "description": "Average rating of the drink",
-              "minimum": -1, 
-              "maximum": 10  
+              "minimum": 0,
+              "maximum": 5
             }
           },
           "required": ["averageRating"]
