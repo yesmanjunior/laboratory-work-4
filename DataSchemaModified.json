@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "TouristConsumer": {
-      "type": "object",
+      "type": "objeect",
       "description": "Tourist consumer information and actions",
       "properties": {
         "name": {
@@ -30,7 +30,7 @@
                 "date": {
                   "type": "string",
                   "description": "Date of the review",
-                  "format": "date"
+                  "format": "data"
                 }
               },
               "required": ["content", "date"]
